@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Othelo
+        </title>
+        <meta charset="utf-8">
+        <style>
+            .cell{
+                vertical-align: middle;
+                font-size:20px;
+                border-right: 5px solid black;
+                border-left: 5px solid black;
+                height:60px;
+                width:60px;
+            }
+            .grid {
+                display: grid;
+                grid-template-columns: 60px 60px 60px 60px 60px 60px 60px 60px;
+                text-align: center;
+                border: 5px solid black;
+            }
+            .board{
+                display: grid;
+                margin-right: 0px;
+                justify-content: center;
+                border: 5px solid black;
+            }
+            h1{
+                border: 5px solid black;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Othelo Game</h1>
+        <form action="/" method="POST">
+                <h3>
+                    {% if player==1 %}
+                        Player: X
+                    {% else %}
+                        Player: O
+                    {% endif %}
+                </h3>
+        </form>
+        <div class="board">
+            <form action="/" method="POST">
+                {% for i in range(8) %}
+                    <div class="grid">
+                        {% for j in range(8) %}
+                            <button class="cell" name="cell" type="submit" value="{{i}},{{j}}">
+                            {% if board[i][j]==1 %}
+                                X
+                            {% elif board[i][j]==-1 %}
+                                O
+                            {% endif %}
+                            </button>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+            </form>
+        </div>
+    </body>
+</html>
