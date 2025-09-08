@@ -5,6 +5,8 @@ board=[]
 turn=0
 player=[1,-1]
 p=0
+player1_score=2
+player2_score=2
 
 def my_turn(location):
     global board
@@ -42,8 +44,8 @@ def my_turn(location):
                             ok[i]=1
                         else:
                             break
-                print(route)
-                print(ok)
+            print(route)
+            print(ok)
         for k in range(0,8,1):
             tx=dir[k][0]
             ty=dir[k][1]
@@ -72,7 +74,19 @@ def board_set():
     board[3][3]=board[4][4]=1
     board[3][4]=board[4][3]=-1
 
-
+def count_score():
+    global player1_score
+    global player2_score
+    player1_score=0
+    player2_score=0
+    for i in range(8):
+        for j in range(8):
+            if(board[i][j]==1):
+                player1_score+=1
+            elif(board[i][j]==-1):
+                player2_score+=1
+    return player1_score, player2_score
+            
 
 app=Flask(__name__)
 @app.route('/', methods=['GET', 'POST'])
@@ -97,6 +111,8 @@ def game():
     global player
     global turn
     global p
+    global player1_score
+    global player2_score
     if(request.method=="POST"):
         temp=request.form.get("cell").split(',')
         print(temp)
@@ -113,10 +129,11 @@ def game():
         if(turn>=60):
             return redirect('/end')
         else:
-            return redirect('/game')
+            player1_score, player2_score=count_score()
+            return render_template('index.html', board=board,player=player[p], player1_score=player1_score,player2_score=player2_score)
     else:
         board_set()
-    return render_template('index.html', board=board,player=player[p])
+    return render_template('index.html', board=board,player=player[p], player1_score=player1_score,player2_score=player2_score)
 
 @app.route('/login')
 def login():
