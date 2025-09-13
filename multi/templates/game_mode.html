@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>
+            othelo game mode
+        </title>
+        <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+    </head>
+    <body>
+        <h2 class="grid">
+            원하는 게임 방식을 선택하세요
+        </h2>
+
+            <div class="grid">
+                <span>
+                <form action="{{url_for('waiting', game_mode='online', player_id=player_id, player1_id=player1_id, player2_id=player2_id)}}" method="GET">
+                    <button class="mode_button" name="game_mode" value="online">
+                        온라인 방식
+                    </button>
+                </form>
+                </span>
+                
+                <span>
+                <form action="{{url_for('game', game_mode='offline', player_id=player_id, player1_id=player_id, player2_id=player_id)}}" method="GET">
+                    <button class="mode_button" name="game_mode" value="offline">
+                        오프라인 방식
+                    </button>
+                </form>
+                </span>
+            </div>
+
+    </body>
+</html>

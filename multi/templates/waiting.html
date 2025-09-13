@@ -1,0 +1,19 @@
+<DOCTYPE html>
+<html>
+    <head>
+        <title>waiting room</title>
+        <meta charset='utf-8'>
+    </head>
+    <body>
+        <script>
+        // 1초마다 서버로 요청
+            
+            
+        setTimeout(()=>{
+            window.location.replace('/waiting2/online/{{ player_id }}');
+        },2000);
+                
+        </script>  
+        {{player_id}}waiting room
+    </body>
+</html>
