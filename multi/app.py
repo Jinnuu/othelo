@@ -293,7 +293,7 @@ def end(game_id):
     cursor.close()
     for i in range(0,8,1):
         for j in range(0,8,1):
-            if(board[i][j]==player[1]):
+            if(board[i][j]==player[0]):
                 player1_cnt+=1
             else:
                 player2_cnt+=1
